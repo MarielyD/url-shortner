@@ -1,14 +1,15 @@
 class UrlsController < ApplicationController
   def new
-    @url = Url.new
-    @urls = Url.all
+    @link = Url.new
+    @links = Url.all
   end
 
   def create
-    @url = Url.new(url_params)
-      @url.shorturl = "#{rand(36**5).to_s(36)}"
+    @link = Url.new(url_params)
+      @link.shorturl = "#{rand(36**5).to_s(36)}"
+
     respond_to do |format|
-      if @url.save
+      if @link.save
         format.html { redirect_to root_path, notice: 'Url was successfully created.' }
 
       else
@@ -17,12 +18,18 @@ class UrlsController < ApplicationController
     end
   end
 
+   def show
+    #  find the link
+    @link = Url.find_by(shorturl: params[:id])
+    # redirect to the long url
+    redirect_to @link.url
+   end
 
     def destroy
   end
-
-
-
+  def index
+    redirect_to root_path
+  end
   private
   def url_params
       params.require(:url).permit(:url)

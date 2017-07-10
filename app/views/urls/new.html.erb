@@ -1,7 +1,7 @@
 <h1 class="title">Add a new URL</h1>
 <br>
 <div class="form1">
-  <%= form_for @url do |form| %>
+  <%= form_for @link do |form| %>
   <%= form.label :url, "Your URL:" %>
   <%= form.text_field :url %>
 <br>
@@ -15,8 +15,9 @@
 <div class="list">
   <h4 class="visit">Visit Url Below</h4>
 
-  <% @urls.each do |url|%>
+  <% @links.each do |url|%>
   <%= link_to url.shorturl, url.url %>
   <br>
   <% end %>
+
 </div>
