@@ -25,8 +25,9 @@ class UrlsController < ApplicationController
     redirect_to @link.url
    end
 
-    def destroy
+  def destroy
   end
+  
   def index
     redirect_to root_path
   end
