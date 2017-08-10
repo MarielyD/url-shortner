@@ -1,24 +1,23 @@
-# README
+Synopsis
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+URL shortner application similar to bit.ly
 
-Things you may want to cover:
+Code Example
 
-* Ruby version
+  def create
+    @link = Url.new(url_params)
+      @link.shorturl = "#{rand(36**5).to_s(36)}"
 
-* System dependencies
+    respond_to do |format|
+      if @link.save
+        format.html { redirect_to root_path, notice: 'Url was successfully created.' }
 
-* Configuration
+      else
+        format.html { redirect_to root_path }
+      end
+    end
+  end
 
-* Database creation
+Motivation
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+A shortner to reduce the size of lengthy URL
